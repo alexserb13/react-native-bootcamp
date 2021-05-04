@@ -1,0 +1,12 @@
+{
+  "name": "Library",
+  "displayName": "Library",
+  "expo": {
+    "name": "Library",
+    "slug": "Library",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
