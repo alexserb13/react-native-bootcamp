@@ -14,6 +14,8 @@ type LibraryType = {
     id: number,
     name: string,
     zipCode: number,
+    latitude: number,
+    longitude: number,
   };
 
 export type Libraries = Array<LibraryType>;

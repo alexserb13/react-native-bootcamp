@@ -73,10 +73,4 @@ const styles = StyleSheet.create({
   chipText: {
     color: '#ffffff',
   },
-  chipPending: {
-    backgroundColor: '#FF6D00',
-  },
-  chipSuccess: {
-    backgroundColor: '#009387',
-  },
 });

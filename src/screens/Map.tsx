@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, FC } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { useGeocoding } from 'hooks/useGeocoding';
 import type { Libraries } from 'sources/types';
 import type { Coordinates } from 'hooks/useUserLocation';
 
@@ -18,14 +17,13 @@ export const MapScreen : FC<Props> = (props) => {
   const { libraries } = props.route.params;
   const { latitude = 0, longitude = 0 } = props.route.params.userCoordinates || {};
   const mapRef = useRef<MapView | null>(null);
-  const { locations } = useGeocoding({ libraries });
 
   useEffect(() => {
     let fitToTimeout: ReturnType<typeof setTimeout>;
-    if (mapRef.current && locations.length) {
+    if (mapRef.current && libraries.length) {
       fitToTimeout = setTimeout(() => {
         mapRef.current?.fitToSuppliedMarkers(
-          locations.map(({ lat, lng }) => `${lat}-${lng}`),
+          libraries.map((library) => `${library.latitude}-${library.longitude}`),
           {
             animated: false,
             edgePadding: {
@@ -36,7 +34,7 @@ export const MapScreen : FC<Props> = (props) => {
       }, 1000);
     }
     return () => clearTimeout(fitToTimeout);
-  }, [locations]);
+  }, [libraries]);
 
   return (
     <View style={styles.fullScreen}>
@@ -55,11 +53,11 @@ export const MapScreen : FC<Props> = (props) => {
         loadingEnabled
         showsUserLocation
       >
-        {locations.map(({ lat, lng }) => (
+        {libraries.map((library) => (
           <Marker
-            key={`${lat}-${lng}`}
-            identifier={`${lat}-${lng}`}
-            coordinate={{ latitude: lat, longitude: lng }}
+            key={`${library.latitude}-${library.longitude}`}
+            identifier={`${library.latitude}-${library.longitude}`}
+            coordinate={{ latitude: library.latitude, longitude: library.longitude }}
           />
         ))}
       </MapView>
