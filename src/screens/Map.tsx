@@ -57,7 +57,10 @@ export const MapScreen : FC<Props> = (props) => {
           <Marker
             key={`${library.latitude}-${library.longitude}`}
             identifier={`${library.latitude}-${library.longitude}`}
-            coordinate={{ latitude: library.latitude, longitude: library.longitude }}
+            coordinate={{
+              latitude: parseInt(library.latitude, 10),
+              longitude: parseInt(library.longitude, 10),
+            }}
           />
         ))}
       </MapView>

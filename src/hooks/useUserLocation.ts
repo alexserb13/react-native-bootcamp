@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import {
   Accuracy,
   getCurrentPositionAsync,
@@ -18,7 +18,14 @@ export const useUserLocation = () :useUserLocationReturnType => {
 
   useEffect(() => {
     if (Platform.OS === 'ios') {
-      requestForegroundPermissionsAsync().then(() => {
+      requestForegroundPermissionsAsync().then(({ granted }) => {
+        if (!granted) {
+          Alert.alert(
+            'No access to user location',
+            'Please enable user location for a better experience !',
+          );
+          return;
+        }
         getCurrentPositionAsync({ accuracy: Accuracy.High })
           .then((json) => setData(json?.coords))
           .catch((error) => console.log(error));
