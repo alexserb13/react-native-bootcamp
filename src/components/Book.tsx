@@ -8,7 +8,7 @@ import {
   Chip,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useDarkThemeContext } from 'context/DarkThemeContext';
+import { useThemeContext } from 'contexts';
 
  type BookProps = {
   title : string,
@@ -25,7 +25,7 @@ export const Book: FC<BookProps> = ({
   returnedDate,
   returnBefore,
 }) => {
-  const { theme: { colors } } = useDarkThemeContext();
+  const { theme: { colors } } = useThemeContext();
 
   return (
     <Card style={styles.card}>

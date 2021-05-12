@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { Book } from 'components/Book';
-import { Loading } from 'components/Loading';
+import { Loading, Book } from 'components';
 import { useBooksHistoryQuery } from 'sources/queries';
 
 export const BookHistoryScreen:FC = () => {

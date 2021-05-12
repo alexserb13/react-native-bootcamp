@@ -2,8 +2,7 @@ import React, { FC } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
-import { Library } from 'components/Library';
-import { Loading } from 'components/Loading';
+import { Loading, Library } from 'components';
 import { useUserLocation } from 'hooks/useUserLocation';
 import { useLibrariesQuery } from 'sources/queries';
 

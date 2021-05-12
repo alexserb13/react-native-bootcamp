@@ -1,17 +1,15 @@
 import React, { FC } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useDarkThemeContext } from 'context/DarkThemeContext';
-import { BadgeScreen } from 'screens/Badge';
-import { BookHistoryScreen } from 'screens/BookHistory';
-import { LibrariesScreen } from 'screens/Libraries';
+import { useThemeContext } from 'contexts';
+import { BadgeScreen, BookHistoryScreen, LibrariesScreen } from 'screens';
 
 import { DrawerContent } from './DrawerContent';
 
 const Drawer = createDrawerNavigator();
 
 export const DrawerNavigation :FC = () => {
-  const { theme: { colors } } = useDarkThemeContext();
+  const { theme: { colors } } = useThemeContext();
 
   return (
     <Drawer.Navigator

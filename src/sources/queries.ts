@@ -1,11 +1,16 @@
 import { useQuery, UseQueryResult, QueryFunctionContext } from 'react-query';
-import { useAuthContext } from 'context/AuthContext';
+import { useAuthContext } from 'contexts';
 import type { UserCoordinates } from 'hooks/useUserLocation';
+import { baseURL } from './constants';
 import type { LibrariesQuery, BooksQuery, MemberQuery } from './types';
 
-const getFromUrl = async ({ queryKey } : QueryFunctionContext<any>) => {
-  const { url, token } = queryKey[1];
-  const result = await fetch(url, {
+type RequestInfo = { url?: string | null, token?: string | null };
+
+type QueryFunction = QueryFunctionContext<[string, RequestInfo]>;
+
+const getFromUrl = async ({ queryKey }: QueryFunction) => {
+  const { url = '', token } = queryKey[1];
+  const result = await fetch(url || '', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -15,8 +20,6 @@ const getFromUrl = async ({ queryKey } : QueryFunctionContext<any>) => {
   });
   return result.json();
 };
-
-const baseURL = 'https://rn-bootcamp2021.mocklab.io/v1';
 
 export const useMemberInfoQuery = (): UseQueryResult<MemberQuery> => {
   const { user, token } = useAuthContext();

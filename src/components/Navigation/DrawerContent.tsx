@@ -13,11 +13,10 @@ import {
   Drawer,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useAuthContext } from 'context/AuthContext';
-import { useDarkThemeContext } from 'context/DarkThemeContext';
+import { useAuthContext, useThemeContext } from 'contexts';
 
 export const DrawerContent: FC<DrawerContentComponentProps> = (props) => {
-  const { theme: { dark, colors }, toggleTheme } = useDarkThemeContext();
+  const { theme: { dark, colors }, toggleTheme } = useThemeContext();
   const { signOut } = useAuthContext();
 
   return (

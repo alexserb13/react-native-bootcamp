@@ -8,7 +8,7 @@ import {
   Avatar,
 } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
-import { Loading } from 'components/Loading';
+import { Loading } from 'components';
 import { useMemberInfoQuery } from 'sources/queries';
 
 export const BadgeScreen :FC = () => {

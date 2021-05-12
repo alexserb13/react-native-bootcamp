@@ -11,7 +11,7 @@ module.exports = function (api) {
           root: ['./src'],
           alias: {
             components: './src/components',
-            context: './src/context',
+            contexts: './src/contexts',
             hooks: './src/hooks',
             screens: './src/screens',
             sources: './src/sources',

@@ -6,6 +6,9 @@ import {
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
 } from 'react-native-paper';
+import type { Theme as NavigationTheme } from '@react-navigation/native';
+
+export type Theme = NavigationTheme & { colors: { pending: string } };
 
 export const DefaultTheme = {
   ...PaperDefaultTheme,

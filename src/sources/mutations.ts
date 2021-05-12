@@ -1,11 +1,16 @@
 import { useMutation, UseMutationOptions, UseMutationResult } from 'react-query';
 import type { LoginResponse } from './types';
+import { baseURL } from './constants';
 
-type MutationContext = { onSuccess: (data: LoginResponse) => void }
+type RequestBody = { memberId: string, password: string };
 
-type MutationOptions = UseMutationOptions<LoginResponse, unknown, unknown, MutationContext>
+type MutationContext = { onSuccess: (data: LoginResponse) => void };
 
-const postToUrl = async (url:string, body: any) => {
+type MutationOptions = UseMutationOptions<LoginResponse, null, RequestBody, MutationContext>;
+
+type MutationResult = UseMutationResult<LoginResponse, null, RequestBody, MutationContext>;
+
+const postToUrl = async (url: string, body: RequestBody) => {
   const result = await fetch(url, {
     method: 'POST',
     headers: {
@@ -17,7 +22,7 @@ const postToUrl = async (url:string, body: any) => {
   return result.json();
 };
 
-export const useLoginMutation = (options: MutationOptions) :UseMutationResult<LoginResponse> => {
-  const url = 'https://rn-bootcamp2021.mocklab.io/v1/login';
+export const useLoginMutation = (options: MutationOptions): MutationResult => {
+  const url = `${baseURL}/login`;
   return useMutation((credentials) => postToUrl(url, credentials), options);
 };

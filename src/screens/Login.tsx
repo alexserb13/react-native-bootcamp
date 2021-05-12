@@ -6,8 +6,8 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import { Form } from 'components/Form/Form';
-import { useAuthContext } from 'context/AuthContext';
+import { Form } from 'components';
+import { useAuthContext } from 'contexts';
 import { useLoginMutation } from 'sources/mutations';
 
 export const LoginScreen:FC = () => {

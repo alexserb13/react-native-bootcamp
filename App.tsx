@@ -5,9 +5,8 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { LogBox } from 'react-native';
 
-import { Navigation } from 'components/Navigation/Navigation';
-import { AuthContextProvider } from 'context/AuthContext';
-import { DarkThemeContextProvider } from 'context/DarkThemeContext';
+import { Navigation } from 'components';
+import { AuthContextProvider, ThemeContextProvider } from 'contexts';
 
 import { DefaultTheme, DarkTheme } from 'utils/theme';
 
@@ -27,13 +26,13 @@ const App: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <DarkThemeContextProvider {...darkThemeProps}>
+        <ThemeContextProvider {...darkThemeProps}>
           <PaperProvider theme={theme}>
             <NavigationContainer theme={theme}>
               <Navigation />
             </NavigationContainer>
           </PaperProvider>
-        </DarkThemeContextProvider>
+        </ThemeContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>
   );
